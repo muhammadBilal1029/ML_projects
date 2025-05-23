@@ -2,11 +2,8 @@ import os
 import streamlit as st
 import numpy as np
 import joblib
-
-model_path = ("iris_predictor.pkl")
-accuracy_path = ("model_accuracy.pkl")
-model = joblib.load(model_path)
-accuracy = joblib.load(accuracy_path)
+model = joblib.load("iris_predictor.pkl")
+accuracy = joblib.load("model_accuracy.pkl")
 st.title("🌸 Iris Flower Species Predictor")
 st.write("Enter the flower's measurements:")
 st.info(f"Model Accuracy: {accuracy * 100:.2f}%")
