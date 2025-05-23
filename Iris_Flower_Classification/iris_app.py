@@ -5,13 +5,8 @@ import joblib
 
 model_path = ("iris_predictor.pkl")
 accuracy_path = ("model_accuracy.pkl")
-
-try:
-    model = joblib.load(model_path)
-    accuracy = joblib.load(accuracy_path)
-except FileNotFoundError:
-    st.error("❌ Model or accuracy file not found. Please ensure they are present.")
-    st.stop()
+model = joblib.load(model_path)
+accuracy = joblib.load(accuracy_path)
 st.title("🌸 Iris Flower Species Predictor")
 st.write("Enter the flower's measurements:")
 st.info(f"Model Accuracy: {accuracy * 100:.2f}%")
