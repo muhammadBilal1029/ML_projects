@@ -1,12 +1,24 @@
+import os
 import streamlit as st
 import numpy as np
 import joblib
 
-# Load the trained model
-model = joblib.load("iris_predictor.pkl")
-accuracy = joblib.load("model_accuracy.pkl")
-st.title("🌸 Iris Flower Species Predictor")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+# Load the model from full path
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(BASE_DIR, "iris_predictor.pkl")
+accuracy_path = os.path.join(BASE_DIR, "model_accuracy.pkl")
+
+try:
+    model = joblib.load(model_path)
+    accuracy = joblib.load(accuracy_path)
+except FileNotFoundError:
+    st.error("❌ Model or accuracy file not found. Please ensure they are present.")
+    st.stop()
+st.title("🌸 Iris Flower Species Predictor")
+st.write("Current directory:", os.getcwd())
+st.write("Files:", os.listdir())
 st.write("Enter the flower's measurements:")
 st.info(f"Model Accuracy: {accuracy * 100:.2f}%")
 # User input
